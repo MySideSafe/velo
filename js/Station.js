@@ -18,9 +18,8 @@ class Station{
     chargerInfosStation(map) {
     
     document.getElementById("mapid").classList.replace('col-md-12', 'col-md-8');
-    document.getElementById("infoStation").classList.replace('d-none', 'col-md-4');
-        console.log(map.coord);
-        map.setCoor(this.positionGps);
+    document.getElementById("infoStation").classList.replace('d-none', 'col-md-4'); 
+    map.setNouvellePosition(this.positionGps);
     document.getElementById("nomStation").textContent = this.nomStation;
     document.getElementById("adresseStation").textContent = this.adresseStation;
     document.getElementById("nbrVelosDispo").textContent = this.nbrVelosDispo;
