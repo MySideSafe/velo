@@ -1,6 +1,5 @@
 class Client{
-    constructor(idClient,nom,prenom){
-        this.idClient=idClient;
+    constructor(nom,prenom){
         this.prenom=prenom;
         this.nom=nom
     }

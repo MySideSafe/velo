@@ -7,6 +7,9 @@ class Map{
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20, }).addTo(this.description);
     }
    
+    setCoor(position){
+        this.coord=position;
+    }
     
     /*afficherMap(){
         let map = L.map('mapid').setView(this.coord, this.zoom); 
