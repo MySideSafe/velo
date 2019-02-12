@@ -34,19 +34,6 @@ class Station{
             }
     }
 }
-    //Todo comment recuperer this
-    /*ecouteStation(){
-         this.marqueur.addEventListener("click", function () {
-                document.getElementById("mapid").classList.replace( 'col-md-12', 'col-md-8' );
-                document.getElementById("form").classList.replace( 'col-md-0', 'col-md-4' );
-                document.getElementById("nomStation").textContent = this.nomStation;
-                document.getElementById("adresseStation").textContent = this.adresseStation;
-                document.getElementById("nbrVelosDispo").textContent = this.nbrVelosDispo;
-                document.getElementById("nbrPlacesDispo").textContent = this.nbrPlacesDispo;
-                });
-    
-    }
-    */
     
     
     

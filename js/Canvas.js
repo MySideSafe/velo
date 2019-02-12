@@ -40,15 +40,14 @@ class Canvas{
         }
     }
     
-    //todo
+    
     effacerCanvas(){
-        
+ this.contextCanvas.clearRect(0,0,this.domCanvas.width,this.domCanvas.height);
     }
     
     recupererSignature(){
         let signature= this.domCanvas.toDataURL("image/png");
         console.log(signature);
-        return signature;
-        
+        return signature;  
     }
 }

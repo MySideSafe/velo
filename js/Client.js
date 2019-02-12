@@ -1,6 +1,14 @@
-class Client{
-    constructor(nom,prenom){
-        this.prenom=prenom;
-        this.nom=nom
+class Client {
+    constructor() {
+        this.nom = document.getElementById("nomFamille").value;
+        this.prenom = document.getElementById("prenom").value;
+        this.signature = document.getElementById("signature").toDataURL("image/png")
     }
+    
+    enregistrerClientDansNavigateur()
+    {
+        localStorage.nomDeFamille = this.nom;
+        localStorage.prenom =this.prenom;
+    }
+   
 }

@@ -1,29 +1,26 @@
 class App {
-    constructor(coord, zoom) {
+    constructor(coord, zoom, canvas) {
         this.map = new Map(coord, zoom);
         this.initStations(this.map);
         this.initCanvas();
         var form = document.getElementById("formReservation");
-        form.addEventListener("submit", function () {
-            recupererInfosReservation();
-        })
-        //ecouteReservation();
-        let client = new Client(sessionStorage.getItem("nomDeFamille"), sessionStorage.getItem("prenom"));
+        this.initReservation(form);
+        
     }
 
     initCanvas() {
         var signature = document.getElementById("signature");
-        var canvas = new Canvas(signature, signature.getContext("2d"), 0, 0, 0, false);
-        canvas.domCanvas.addEventListener("mousedown", function () {
+        var canvas =new Canvas(signature, signature.getContext("2d"), 0, 0, 0, false);
+        this.canvas = canvas;
+        this.canvas.domCanvas.addEventListener("mousedown", function() {
             canvas.sourisBas();
         });
-        canvas.domCanvas.addEventListener("mouseup", function () {
+        this.canvas.domCanvas.addEventListener("mouseup", function () {
             canvas.sourisHaut();
         });
-        canvas.domCanvas.addEventListener("mousemove", function (e) {
+        this.canvas.domCanvas.addEventListener("mousemove", function (e) {
             canvas.dessineMouvementSouris(e);
         });
-        canvas.recupererSignature();
     }
 
     initStations(map) {
@@ -40,5 +37,18 @@ class App {
             }
         });
     }
-
+    
+    initReservation(form){
+        form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var client = new Client();
+        client.enregistrerClientDansNavigateur();
+        var date = new Date();
+        var res= new Reservation(client,date);
+        res.enregistrerReservation(client);
+        res.afficherReservation();
+        });
+       
+    }
 }
+
