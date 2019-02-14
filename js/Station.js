@@ -27,6 +27,7 @@ class Station{
     document.getElementById("nbrVelosDispo").textContent = this.nbrVelosDispo;
     document.getElementById("nbrPlacesDispo").textContent = this.nbrPlacesDispo;
     //Si une réservation est possible on affiche le formulaire
+    //Todo vérifier si il existes des locales storage pour précharger nome t prénom
     if(this.etatStation!="CLOSED" && this.nbrVelosDispo!=0)
         {
           document.getElementById("formReservation").classList.replace("d-none","d-block"); 
@@ -38,6 +39,8 @@ class Station{
     }
 }
     
-    
+ enleverUnVelo(){
+     this.nbrVelosDispo=this.nbrVelosDispo-1;
+ }
     
 }
