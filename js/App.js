@@ -1,11 +1,10 @@
 class App {
     constructor(coord, zoom, canvas) {
-        this.map = new Map(coord, zoom);
-        this.initStations(this.map);
-        this.initCanvas();
+        this.map = new Map(coord, zoom); //chargement de la map
+        this.initStations(this.map); //Chargement des stations
+        this.initCanvas(); //mise en place du canvas
         var form = document.getElementById("formReservation");
-        this.initReservation(form);
-        
+        this.initReservation(form); // gestion de la réservation
     }
 
     initCanvas() {
@@ -22,7 +21,8 @@ class App {
             canvas.dessineMouvementSouris(e);
         });
     }
-
+    
+    //Affichage de la liste des stations sur la map
     initStations(map) {
         ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=73b8377b68cf91d454d51322942e64a69bf02c27", function (reponse) {
             let stations = JSON.parse(reponse);
