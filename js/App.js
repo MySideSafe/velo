@@ -3,11 +3,11 @@ class App {
         let coord = [45.75, 4.85];
         let zoom = 14; 
         this.map = new Map(coord, zoom); //chargement de la map
-        this.res = new Reservation(null,null);
-        this.initStations(this.map,this.res); //Chargement des stations
+        this.formulaire = new Formulaire(document.getElementById("formReservation"));
+        this.initStations(this.map,this.formulaire); //Chargement des stations
+        this.initReservation(this.formulaire.formDom);
         this.initCanvas(); //mise en place du canvas
-        var form = document.getElementById("formReservation");
-        this.initReservation(form,this.res); // gestion de la réservation
+       
     }
 
     initCanvas() {
@@ -26,32 +26,32 @@ class App {
     }
     
     //Affichage de la liste des stations sur la map
-    initStations(map,res) {
+    initStations(map,formulaire) {
         ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=73b8377b68cf91d454d51322942e64a69bf02c27", function (reponse) {
             let stations = JSON.parse(reponse);
             for (let uneStation of stations) {
-                let station = new Station(uneStation.number, uneStation.position, uneStation.name, uneStation.address, uneStation.status, uneStation.available_bike_stands, uneStation.available_bikes);
+               const station = new Station(uneStation.number, uneStation.position, uneStation.name, uneStation.address, uneStation.status, uneStation.available_bike_stands, uneStation.available_bikes);
                 station.ajouterMarqueur(map);
                 station.marqueur.addEventListener("click", function () {
                 station.chargerInfosStation(map);
-                res.afficherForm(station);
+                formulaire.afficherForm(station);
+                
             });
 
             }
         });
     }
     
-    initReservation(form,res,station){
-        form.addEventListener("submit", function (e) {
+    initReservation(formulaire){
+        formulaire.addEventListener("submit", function (e) {
         e.preventDefault();
         const client = new Client();
         client.recupererClient();
         client.enregistrerClientDansNavigateur();
         var date = new Date();
-        res.setClient(client);
-        res.setDateD(date);
-        res.enregistrerReservation(client);
-        res.afficherReservation();
+        const reservation = new Reservation(client,date);
+        reservation.enregistrerReservation(client);
+        reservation.afficherReservation();
         });
        
     }
