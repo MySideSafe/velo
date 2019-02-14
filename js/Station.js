@@ -26,18 +26,12 @@ class Station{
     document.getElementById("adresseStation").textContent = this.adresseStation;
     document.getElementById("nbrVelosDispo").textContent = this.nbrVelosDispo;
     document.getElementById("nbrPlacesDispo").textContent = this.nbrPlacesDispo;
-    //Si une réservation est possible on affiche le formulaire
-    //Todo vérifier si il existes des locales storage pour précharger nome t prénom
-    if(this.etatStation!="CLOSED" && this.nbrVelosDispo!=0)
-        {
-          document.getElementById("formReservation").classList.replace("d-none","d-block"); 
-        }
-    else{
-        if(document.getElementById("formReservation").className==="d-block"){
-        document.getElementById("formReservation").classList.replace("d-block","d-none"); 
-            }
-    }
 }
+    //Renvoie true si une reservation est possible à cette station
+    stationAccessible(){
+         var reservationPossible =(this.etatStation!="CLOSED" && this.nbrVelosDispo!=0);
+        return reservationPossible;
+    }
     
  enleverUnVelo(){
      this.nbrVelosDispo=this.nbrVelosDispo-1;
