@@ -42,6 +42,7 @@ class App {
         form.addEventListener("submit", function (e) {
         e.preventDefault();
         var client = new Client();
+        client.recupererClient();
         client.enregistrerClientDansNavigateur();
         var date = new Date();
         var res= new Reservation(client,date);
